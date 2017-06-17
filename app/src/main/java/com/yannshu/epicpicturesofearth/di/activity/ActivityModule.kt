@@ -6,13 +6,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract class ActivityModule<T : BaseActivity<*>>(protected val activity: T) {
+abstract class ActivityModule<out T : BaseActivity>(protected val activity: T) {
 
     @Provides
     @ActivityScope
-    fun provideActivity(): BaseActivity<*> {
+    fun provideActivity(): T {
         return activity
     }
-
-
 }

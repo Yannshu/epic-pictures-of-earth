@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -22,7 +23,7 @@ android {
 }
 
 ext {
-    ANDROID_SUPPORT_VERSION = '25.3.1'
+    ANDROID_SUPPORT_VERSION = '25.4.0'
     DAGGER_VERSION = '2.9'
 }
 
@@ -36,7 +37,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile "com.google.dagger:dagger:$DAGGER_VERSION"
-    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-    provided 'javax.annotation:jsr250-api:1.0'
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
 }
