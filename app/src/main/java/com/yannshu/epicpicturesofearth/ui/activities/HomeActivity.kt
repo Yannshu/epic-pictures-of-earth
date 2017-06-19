@@ -3,7 +3,7 @@ package com.yannshu.epicpicturesofearth.ui.activities
 import android.os.Bundle
 import com.yannshu.epicpicturesofearth.R
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
-
+import com.yannshu.epicpicturesofearth.ui.base.BaseActivity
 
 
 class HomeActivity : BaseActivity() {

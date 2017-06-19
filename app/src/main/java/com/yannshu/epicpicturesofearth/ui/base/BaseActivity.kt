@@ -1,4 +1,4 @@
-package com.yannshu.epicpicturesofearth.ui.activities
+package com.yannshu.epicpicturesofearth.ui.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
