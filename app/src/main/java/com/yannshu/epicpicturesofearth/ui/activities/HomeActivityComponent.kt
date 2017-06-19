@@ -4,7 +4,9 @@ import com.yannshu.epicpicturesofearth.di.activity.ActivityComponent
 import com.yannshu.epicpicturesofearth.di.activity.ActivityComponentBuilder
 import com.yannshu.epicpicturesofearth.di.activity.ActivityModule
 import com.yannshu.epicpicturesofearth.di.activity.ActivityScope
+import com.yannshu.epicpicturesofearth.presenters.HomeActivityPresenter
 import dagger.Module
+import dagger.Provides
 import dagger.Subcomponent
 
 @ActivityScope
@@ -16,12 +18,10 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
 
     @Module
     class HomeActivityModule(activity: HomeActivity) : ActivityModule<HomeActivity>(activity) {
-        /*
-            @ActivityScope
-            @Provides
-            public MainPresenter provideMainPresenter() {
-                return new MainPresenter();
-            }
-        */
+        @ActivityScope
+        @Provides
+        fun provideHomeActivityPresenter(): HomeActivityPresenter {
+            return HomeActivityPresenter()
+        }
     }
 }
