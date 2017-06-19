@@ -6,17 +6,17 @@ import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilde
 
 
 
-class MainActivity : BaseActivity() {
+class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
     }
 
     override fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders) {
         (hasActivitySubComponentBuilders
-                .getActivityComponentBuilder(MainActivity::class.java) as MainActivityComponent.Builder)
-                .activityModule(MainActivityComponent.MainActivityModule(this))
+                .getActivityComponentBuilder(HomeActivity::class.java) as HomeActivityComponent.Builder)
+                .activityModule(HomeActivityComponent.HomeActivityModule(this))
                 .build()
                 .injectMembers(this)
     }

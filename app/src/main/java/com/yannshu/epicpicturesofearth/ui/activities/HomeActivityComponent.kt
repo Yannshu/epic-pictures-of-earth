@@ -8,14 +8,14 @@ import dagger.Module
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = arrayOf(MainActivityComponent.MainActivityModule::class))
-interface MainActivityComponent : ActivityComponent<MainActivity> {
+@Subcomponent(modules = arrayOf(HomeActivityComponent.HomeActivityModule::class))
+interface HomeActivityComponent : ActivityComponent<HomeActivity> {
 
     @Subcomponent.Builder
-    interface Builder : ActivityComponentBuilder<MainActivityModule, MainActivityComponent>
+    interface Builder : ActivityComponentBuilder<HomeActivityModule, HomeActivityComponent>
 
     @Module
-    class MainActivityModule(activity: MainActivity) : ActivityModule<MainActivity>(activity) {
+    class HomeActivityModule(activity: HomeActivity) : ActivityModule<HomeActivity>(activity) {
         /*
             @ActivityScope
             @Provides
