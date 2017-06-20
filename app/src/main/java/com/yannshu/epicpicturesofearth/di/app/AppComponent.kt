@@ -6,7 +6,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(ActivityBindingModule::class, AppModule::class))
+@Component(modules = arrayOf(
+        AppModule::class,
+        ActivityBindingModule::class,
+        NetModule::class,
+        RepositoryModule::class
+))
 interface AppComponent {
     fun inject(application: EpicPicturesOfEarthApplication): EpicPicturesOfEarthApplication
 }

@@ -1,5 +1,6 @@
 package com.yannshu.epicpicturesofearth.view.activities
 
+import com.yannshu.epicpicturesofearth.data.repositories.PicturesMetadataRepository
 import com.yannshu.epicpicturesofearth.di.activity.ActivityComponent
 import com.yannshu.epicpicturesofearth.di.activity.ActivityComponentBuilder
 import com.yannshu.epicpicturesofearth.di.activity.ActivityModule
@@ -20,8 +21,8 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
     class HomeActivityModule(activity: HomeActivity) : ActivityModule<HomeActivity>(activity) {
         @ActivityScope
         @Provides
-        fun providePicturesMetadataViewModel(): PicturesMetadataViewModel {
-            return PicturesMetadataViewModel()
+        fun providePicturesMetadataViewModel(repository: PicturesMetadataRepository): PicturesMetadataViewModel {
+            return PicturesMetadataViewModel(repository)
         }
     }
 }
