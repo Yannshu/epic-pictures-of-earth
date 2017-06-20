@@ -1,10 +1,14 @@
-package com.yannshu.epicpicturesofearth.ui.base
+package com.yannshu.epicpicturesofearth.view.base
 
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
+
+    val mLifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         retrieveIntentBundle(intent.extras)
@@ -20,4 +24,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected abstract fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders)
+
+    override fun getLifecycle(): LifecycleRegistry {
+        return mLifecycleRegistry
+    }
 }
