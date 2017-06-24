@@ -20,14 +20,10 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        mViewModel.init("2017-06-19")
+        mViewModel.init("2017-06-20")
         mViewModel.mPicturesMetadata?.observe(this, object: Observer<List<PictureMetadata>> {
             override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
-                if (picturesMetadata != null) {
-                    for (pictureMetadata in picturesMetadata) {
-                        Log.d("HomeActivity", "Picture: " + pictureMetadata.image)
-                    }
-                }
+                Log.d("HomeActivity", "Picture: " + picturesMetadata?.size)
             }
 
         })

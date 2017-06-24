@@ -13,6 +13,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -53,6 +60,9 @@ dependencies {
     implementation "android.arch.lifecycle:runtime:$ARCHITECTURE_COMPONENTS_VERSION"
     implementation "android.arch.lifecycle:extensions:$ARCHITECTURE_COMPONENTS_VERSION"
     kapt "android.arch.lifecycle:compiler:$ARCHITECTURE_COMPONENTS_VERSION"
+
+    implementation "android.arch.persistence.room:runtime:$ARCHITECTURE_COMPONENTS_VERSION"
+    kapt "android.arch.persistence.room:compiler:$ARCHITECTURE_COMPONENTS_VERSION"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
