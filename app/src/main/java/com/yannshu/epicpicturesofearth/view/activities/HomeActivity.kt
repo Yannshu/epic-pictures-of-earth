@@ -6,6 +6,7 @@ import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.daimajia.slider.library.SliderLayout
+import com.daimajia.slider.library.SliderTypes.BaseSliderView
 import com.daimajia.slider.library.SliderTypes.TextSliderView
 import com.yannshu.epicpicturesofearth.R
 import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
@@ -60,6 +61,7 @@ class HomeActivity : BaseActivity() {
         var textSliderView: TextSliderView = TextSliderView(this)
         textSliderView.description(pictureMetadata.date)
         textSliderView.image(mPicturesUrlBuilder.buildUrl(mQuality, pictureMetadata))
+        textSliderView.setScaleType(BaseSliderView.ScaleType.CenterInside)
         mPicturesSliderLayout.addSlider(textSliderView)
     }
 }
