@@ -19,6 +19,10 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
+    object Constants {
+        val PICTURE_DISPLAY_DURATION_MS: Long = 10000
+    }
+
     @Inject
     lateinit var mViewModel: PicturesMetadataViewModel
 
@@ -34,6 +38,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         ButterKnife.bind(this)
+        initPicturesSlider()
 
         mViewModel.init(mQuality, "2017-06-20")
         mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
@@ -55,6 +60,15 @@ class HomeActivity : BaseActivity() {
                 .activityModule(HomeActivityComponent.HomeActivityModule(this))
                 .build()
                 .injectMembers(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPicturesSliderLayout.stopAutoCycle()
+    }
+
+    private fun initPicturesSlider() {
+        mPicturesSliderLayout.setDuration(Constants.PICTURE_DISPLAY_DURATION_MS)
     }
 
     private fun addToSliderLayout(pictureMetadata: PictureMetadata) {
