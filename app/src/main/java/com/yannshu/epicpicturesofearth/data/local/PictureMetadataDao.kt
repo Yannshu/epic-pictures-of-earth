@@ -13,6 +13,6 @@ interface PictureMetadataDao {
     @Insert(onConflict = REPLACE)
     fun save(pictureMetadata: PictureMetadata)
 
-    @Query("SELECT * FROM PictureMetadata WHERE date LIKE :p0 ORDER BY date ASC")
+    @Query("SELECT * FROM PictureMetadata WHERE date LIKE :date ORDER BY date ASC")
     fun load(date: String): LiveData<List<PictureMetadata>>
 }

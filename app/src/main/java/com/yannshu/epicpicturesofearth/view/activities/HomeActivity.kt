@@ -25,7 +25,6 @@ class HomeActivity : BaseActivity() {
             override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
                 Log.d("HomeActivity", "Picture: " + picturesMetadata?.size)
             }
-
         })
     }
 
