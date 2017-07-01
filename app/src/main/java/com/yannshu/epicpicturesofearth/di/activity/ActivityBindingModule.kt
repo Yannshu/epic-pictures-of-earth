@@ -1,7 +1,7 @@
 package com.yannshu.epicpicturesofearth.di.activity
 
-import com.yannshu.epicpicturesofearth.ui.activities.HomeActivity
-import com.yannshu.epicpicturesofearth.ui.activities.HomeActivityComponent
+import com.yannshu.epicpicturesofearth.view.activities.HomeActivity
+import com.yannshu.epicpicturesofearth.view.activities.HomeActivityComponent
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

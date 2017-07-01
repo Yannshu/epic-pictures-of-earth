@@ -1,28 +1,31 @@
-package com.yannshu.epicpicturesofearth.ui.activities
+package com.yannshu.epicpicturesofearth.view.activities
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.util.Log
 import com.yannshu.epicpicturesofearth.R
-import com.yannshu.epicpicturesofearth.contracts.HomeActivityContract
+import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
-import com.yannshu.epicpicturesofearth.presenters.HomeActivityPresenter
-import com.yannshu.epicpicturesofearth.ui.base.BaseActivity
+import com.yannshu.epicpicturesofearth.view.base.BaseActivity
+import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataViewModel
 import javax.inject.Inject
 
 
-class HomeActivity : BaseActivity(), HomeActivityContract.View {
+class HomeActivity : BaseActivity() {
 
     @Inject
-    lateinit var mPresenter: HomeActivityPresenter
+    lateinit var mViewModel: PicturesMetadataViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        mPresenter.attachView(this)
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter.detachView()
+        mViewModel.init("2017-06-20")
+        mViewModel.mPicturesMetadata?.observe(this, object: Observer<List<PictureMetadata>> {
+            override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
+                Log.d("HomeActivity", "Picture: " + picturesMetadata?.size)
+            }
+        })
     }
 
     override fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders) {

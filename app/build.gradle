@@ -8,11 +8,18 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.yannshu.epicpicturesofearth"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -25,19 +32,41 @@ android {
 ext {
     ANDROID_SUPPORT_VERSION = '25.4.0'
     DAGGER_VERSION = '2.9'
+    ARCHITECTURE_COMPONENTS_VERSION = '1.0.0-alpha3'
+    RETROFIT_VERSION = '2.3.0'
+    OKHTTP_VERSION = '3.8.1'
 }
 
 dependencies {
+    // Local libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Tests
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$ANDROID_SUPPORT_VERSION"
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "com.android.support:appcompat-v7:$ANDROID_SUPPORT_VERSION"
+
+    // Dagger
     implementation "com.google.dagger:dagger:$DAGGER_VERSION"
     kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     compileOnly 'javax.annotation:jsr250-api:1.0'
+
+    // App components
+    implementation "android.arch.lifecycle:runtime:$ARCHITECTURE_COMPONENTS_VERSION"
+    implementation "android.arch.lifecycle:extensions:$ARCHITECTURE_COMPONENTS_VERSION"
+    kapt "android.arch.lifecycle:compiler:$ARCHITECTURE_COMPONENTS_VERSION"
+
+    implementation "android.arch.persistence.room:runtime:$ARCHITECTURE_COMPONENTS_VERSION"
+    kapt "android.arch.persistence.room:compiler:$ARCHITECTURE_COMPONENTS_VERSION"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
 }

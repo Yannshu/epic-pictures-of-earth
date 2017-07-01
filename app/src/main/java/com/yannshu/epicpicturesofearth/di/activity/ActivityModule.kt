@@ -1,6 +1,6 @@
 package com.yannshu.epicpicturesofearth.di.activity
 
-import com.yannshu.epicpicturesofearth.ui.base.BaseActivity
+import com.yannshu.epicpicturesofearth.view.base.BaseActivity
 
 import dagger.Module
 import dagger.Provides
