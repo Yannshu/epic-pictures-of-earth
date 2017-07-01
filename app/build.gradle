@@ -20,8 +20,11 @@ android {
                                      "$projectDir/schemas".toString()]
             }
         }
+        buildConfigField "String", "EPIC_URL", "\"https://epic.gsfc.nasa.gov/\""
+        buildConfigField "String", "EPIC_API_URL", "\"https://epic.gsfc.nasa.gov/api/\""
     }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

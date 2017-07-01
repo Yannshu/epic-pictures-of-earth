@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.content.res.Resources
+import com.yannshu.epicpicturesofearth.utils.PictureUrlBuilder
 import dagger.Module
 import dagger.Provides
 
@@ -28,5 +29,10 @@ class AppModule(internal val application: Application) {
     @Provides
     fun provideResources(): Resources {
         return application.resources
+    }
+
+    @Provides
+    fun providePictureUrlBuilder(): PictureUrlBuilder {
+        return PictureUrlBuilder()
     }
 }

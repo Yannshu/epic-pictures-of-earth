@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context="com.yannshu.epicpicturesofearth.view.activities.HomeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="It doesn\'t crash" />
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/pictures_slider_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
