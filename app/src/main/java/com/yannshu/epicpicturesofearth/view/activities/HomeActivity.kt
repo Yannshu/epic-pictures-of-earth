@@ -2,7 +2,6 @@ package com.yannshu.epicpicturesofearth.view.activities
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.daimajia.slider.library.SliderLayout
@@ -49,7 +48,6 @@ class HomeActivity : BaseActivity() {
                         addToSliderLayout(pictureMetadata)
                     }
                 }
-                Log.d("HomeActivity", "Picture: " + picturesMetadata?.size)
             }
         })
     }
