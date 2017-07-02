@@ -60,6 +60,11 @@ class HomeActivity : BaseActivity() {
                 .injectMembers(this)
     }
 
+    override fun onStart() {
+        super.onStart()
+        mPicturesSliderLayout.startAutoCycle(Constants.PICTURE_DISPLAY_DURATION_MS, Constants.PICTURE_DISPLAY_DURATION_MS, false)
+    }
+
     override fun onStop() {
         super.onStop()
         mPicturesSliderLayout.stopAutoCycle()
@@ -73,7 +78,7 @@ class HomeActivity : BaseActivity() {
         var textSliderView: TextSliderView = TextSliderView(this)
         textSliderView.description(pictureMetadata.date)
         textSliderView.image(mPicturesUrlBuilder.buildUrl(mQuality, pictureMetadata))
-        textSliderView.setScaleType(BaseSliderView.ScaleType.CenterInside)
+        textSliderView.scaleType = BaseSliderView.ScaleType.CenterInside
         mPicturesSliderLayout.addSlider(textSliderView)
     }
 }
