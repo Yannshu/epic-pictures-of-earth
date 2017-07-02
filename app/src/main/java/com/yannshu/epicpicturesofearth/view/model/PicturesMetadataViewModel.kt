@@ -13,10 +13,10 @@ class PicturesMetadataViewModel(repository: PicturesMetadataRepository): ViewMod
     var mDate: String? = null
     var mPicturesMetadata: LiveData<List<PictureMetadata>>? = null
 
-    fun init(date: String) {
+    fun init(quality: String, date: String) {
         mDate = date
         if (mDate != null) {
-            mPicturesMetadata = mRepository.getPicturesMetadata("enhanced", mDate!!)
+            mPicturesMetadata = mRepository.getPicturesMetadata(quality, date)
         }
     }
 }

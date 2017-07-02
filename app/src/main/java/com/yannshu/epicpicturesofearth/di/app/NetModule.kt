@@ -3,6 +3,7 @@ package com.yannshu.epicpicturesofearth.di.app
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.yannshu.epicpicturesofearth.BuildConfig
 import com.yannshu.epicpicturesofearth.data.network.PictureMetadataApi
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,7 @@ class NetModule {
     @Provides
     @Named("ImageMetadataApi")
     fun provideMetadataApiUrl(): String {
-        return "https://epic.gsfc.nasa.gov/api/"
+        return BuildConfig.EPIC_API_URL
     }
 
     @Provides
