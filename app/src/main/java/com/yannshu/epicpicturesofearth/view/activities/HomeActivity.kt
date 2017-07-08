@@ -2,11 +2,14 @@ package com.yannshu.epicpicturesofearth.view.activities
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
+import android.util.Log
+import butterknife.BindView
 import butterknife.ButterKnife
 import com.yannshu.epicpicturesofearth.R
 import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
-import com.yannshu.epicpicturesofearth.utils.PictureUrlBuilder
+import com.yannshu.epicpicturesofearth.view.adapters.PicturesAdapter
 import com.yannshu.epicpicturesofearth.view.base.BaseActivity
 import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataViewModel
 import javax.inject.Inject
@@ -14,15 +17,17 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity() {
 
-    object Constants {
-        val PICTURE_DISPLAY_DURATION_MS: Long = 10000
-    }
-
     @Inject
     lateinit var mViewModel: PicturesMetadataViewModel
 
     @Inject
-    lateinit var mPicturesUrlBuilder: PictureUrlBuilder
+    lateinit var mAdapter: PicturesAdapter
+
+    @Inject
+    lateinit var mLayoutManager: RecyclerView.LayoutManager
+
+    @BindView(R.id.pictures_recycler_view)
+    lateinit var mRecyclerView: RecyclerView
 
     var mQuality: String = "natural"
 
@@ -30,11 +35,15 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         ButterKnife.bind(this)
+        initRecyclerView()
 
         mViewModel.init(mQuality, "2017-06-20")
         mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
             override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
+                Log.d("data", "pictures: " + picturesMetadata?.size)
                 if (picturesMetadata != null) {
+                    mAdapter.mData = picturesMetadata
+                    mAdapter.notifyDataSetChanged()
                 }
             }
         })
@@ -43,8 +52,14 @@ class HomeActivity : BaseActivity() {
     override fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders) {
         (hasActivitySubComponentBuilders
                 .getActivityComponentBuilder(HomeActivity::class.java) as HomeActivityComponent.Builder)
-                .activityModule(HomeActivityComponent.HomeActivityModule(this))
+                .activityModule(HomeActivityComponent.HomeActivityModule(this, mQuality))
                 .build()
                 .injectMembers(this)
+    }
+
+    private fun initRecyclerView() {
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.layoutManager = mLayoutManager
+        mRecyclerView.adapter = mAdapter
     }
 }
