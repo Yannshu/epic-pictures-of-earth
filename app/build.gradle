@@ -54,6 +54,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     implementation "com.android.support:appcompat-v7:$ANDROID_SUPPORT_VERSION"
+    implementation "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_VERSION"
 
     // Dagger
     implementation "com.google.dagger:dagger:$DAGGER_VERSION"
