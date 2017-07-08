@@ -6,9 +6,5 @@
     android:background="@android:color/black"
     tools:context="com.yannshu.epicpicturesofearth.view.activities.HomeActivity">
 
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/pictures_slider_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </RelativeLayout>

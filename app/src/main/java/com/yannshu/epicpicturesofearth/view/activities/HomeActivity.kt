@@ -2,11 +2,7 @@ package com.yannshu.epicpicturesofearth.view.activities
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import butterknife.BindView
 import butterknife.ButterKnife
-import com.daimajia.slider.library.SliderLayout
-import com.daimajia.slider.library.SliderTypes.BaseSliderView
-import com.daimajia.slider.library.SliderTypes.TextSliderView
 import com.yannshu.epicpicturesofearth.R
 import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
@@ -28,25 +24,17 @@ class HomeActivity : BaseActivity() {
     @Inject
     lateinit var mPicturesUrlBuilder: PictureUrlBuilder
 
-    @BindView(R.id.pictures_slider_layout)
-    lateinit var mPicturesSliderLayout: SliderLayout
-
     var mQuality: String = "natural"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         ButterKnife.bind(this)
-        initPicturesSlider()
 
         mViewModel.init(mQuality, "2017-06-20")
         mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
             override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
                 if (picturesMetadata != null) {
-                    mPicturesSliderLayout.removeAllSliders()
-                    for (pictureMetadata: PictureMetadata in picturesMetadata) {
-                        addToSliderLayout(pictureMetadata)
-                    }
                 }
             }
         })
@@ -58,27 +46,5 @@ class HomeActivity : BaseActivity() {
                 .activityModule(HomeActivityComponent.HomeActivityModule(this))
                 .build()
                 .injectMembers(this)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mPicturesSliderLayout.startAutoCycle(Constants.PICTURE_DISPLAY_DURATION_MS, Constants.PICTURE_DISPLAY_DURATION_MS, false)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mPicturesSliderLayout.stopAutoCycle()
-    }
-
-    private fun initPicturesSlider() {
-        mPicturesSliderLayout.setDuration(Constants.PICTURE_DISPLAY_DURATION_MS)
-    }
-
-    private fun addToSliderLayout(pictureMetadata: PictureMetadata) {
-        var textSliderView: TextSliderView = TextSliderView(this)
-        textSliderView.description(pictureMetadata.date)
-        textSliderView.image(mPicturesUrlBuilder.buildUrl(mQuality, pictureMetadata))
-        textSliderView.scaleType = BaseSliderView.ScaleType.CenterInside
-        mPicturesSliderLayout.addSlider(textSliderView)
     }
 }
