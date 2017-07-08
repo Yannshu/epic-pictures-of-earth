@@ -26,6 +26,9 @@ class HomeActivity : BaseActivity() {
     @Inject
     lateinit var mLayoutManager: RecyclerView.LayoutManager
 
+    @Inject
+    lateinit var mItemDecoration: RecyclerView.ItemDecoration
+
     @BindView(R.id.pictures_recycler_view)
     lateinit var mRecyclerView: RecyclerView
 
@@ -59,6 +62,7 @@ class HomeActivity : BaseActivity() {
 
     private fun initRecyclerView() {
         mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.addItemDecoration(mItemDecoration)
         mRecyclerView.layoutManager = mLayoutManager
         mRecyclerView.adapter = mAdapter
     }
