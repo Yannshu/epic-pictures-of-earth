@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
@@ -50,6 +51,9 @@ class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: Pict
         @BindView(R.id.picture_image_view)
         lateinit var mPictureImageView: ImageView
 
+        @BindView(R.id.date_text_view)
+        lateinit var mDateTextView: TextView
+
         val mQuality: String = quality
 
         val mPictureUrlBuilder: PictureUrlBuilder = pictureUrlBuilder
@@ -67,6 +71,7 @@ class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: Pict
             } else {
                 loadImage(pictureMetadata)
             }
+            mDateTextView.text = pictureMetadata.date
         }
 
         private fun loadImage(pictureMetadata: PictureMetadata) {
