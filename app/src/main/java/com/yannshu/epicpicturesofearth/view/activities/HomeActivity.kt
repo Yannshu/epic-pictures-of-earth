@@ -55,7 +55,7 @@ class HomeActivity : BaseActivity() {
     override fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders) {
         (hasActivitySubComponentBuilders
                 .getActivityComponentBuilder(HomeActivity::class.java) as HomeActivityComponent.Builder)
-                .activityModule(HomeActivityComponent.HomeActivityModule(this, mQuality))
+                .activityModule(HomeActivityComponent.HomeActivityModule(this))
                 .build()
                 .injectMembers(this)
     }

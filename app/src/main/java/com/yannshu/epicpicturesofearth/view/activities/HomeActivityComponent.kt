@@ -25,11 +25,9 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
     interface Builder : ActivityComponentBuilder<HomeActivityModule, HomeActivityComponent>
 
     @Module
-    class HomeActivityModule(activity: HomeActivity, quality: String) : ActivityModule<HomeActivity>(activity) {
+    class HomeActivityModule(activity: HomeActivity) : ActivityModule<HomeActivity>(activity) {
 
         val mContext: Context = activity
-
-        val mQuality: String = quality
 
         @ActivityScope
         @Provides
@@ -51,7 +49,7 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
 
         @Provides
         fun providePicturesAdapter(picturesUrlBuilder: PictureUrlBuilder): PicturesAdapter {
-            return PicturesAdapter(mContext, mQuality, picturesUrlBuilder)
+            return PicturesAdapter(mContext, picturesUrlBuilder)
         }
     }
 }

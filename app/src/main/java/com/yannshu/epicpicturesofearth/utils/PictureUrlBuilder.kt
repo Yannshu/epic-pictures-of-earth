@@ -13,13 +13,13 @@ class PictureUrlBuilder {
         val DATE_LENGTH: Int = 10
     }
 
-    fun buildUrl(quality: String, pictureMetadata: PictureMetadata): String {
+    fun buildUrl(pictureMetadata: PictureMetadata): String {
         var builder: StringBuilder = StringBuilder()
         builder.append(BuildConfig.EPIC_URL)
         builder.append(File.separatorChar)
         builder.append(Constants.ARCHIVE)
         builder.append(File.separatorChar)
-        builder.append(quality)
+        builder.append(pictureMetadata.quality)
         builder.append(File.separatorChar)
         builder.append(pictureMetadata.date?.substring(0, Constants.DATE_LENGTH)?.replace(Constants.DASH, File.separator))
         builder.append(File.separatorChar)

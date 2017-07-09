@@ -12,4 +12,6 @@ class PictureMetadata {
     var caption: String? = null
 
     var date: String? = null
+
+    var quality: String? = null
 }

@@ -15,11 +15,9 @@ import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.utils.PictureUrlBuilder
 
 
-class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.Adapter<PicturesAdapter.ViewHolder>() {
+class PicturesAdapter(context: Context, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.Adapter<PicturesAdapter.ViewHolder>() {
 
     val mContext: Context = context
-
-    val mQuality: String = quality
 
     val mPicturesUrlBuilder: PictureUrlBuilder = pictureUrlBuilder
 
@@ -43,18 +41,16 @@ class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: Pict
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_picture, parent, false)
-        return ViewHolder(view, mQuality, mPicturesUrlBuilder)
+        return ViewHolder(view, mPicturesUrlBuilder)
     }
 
-    class ViewHolder(itemView: View, quality: String, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.picture_image_view)
         lateinit var mPictureImageView: ImageView
 
         @BindView(R.id.date_text_view)
         lateinit var mDateTextView: TextView
-
-        val mQuality: String = quality
 
         val mPictureUrlBuilder: PictureUrlBuilder = pictureUrlBuilder
 
@@ -76,7 +72,7 @@ class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: Pict
 
         private fun loadImage(pictureMetadata: PictureMetadata) {
             Glide.with(itemView)
-                    .load(mPictureUrlBuilder.buildUrl(mQuality, pictureMetadata))
+                    .load(mPictureUrlBuilder.buildUrl(pictureMetadata))
                     .into(mPictureImageView)
         }
     }

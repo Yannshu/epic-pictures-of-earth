@@ -30,6 +30,7 @@ class PicturesMetadataRepository(picturesMetadataApi: PictureMetadataApi, pictur
 
                 if (picturesMetadata != null) {
                     for (pictureMetadata in picturesMetadata) {
+                        pictureMetadata.quality = quality
                         mPicturesMetadataDao.save(pictureMetadata)
                     }
                 }
