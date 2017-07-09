@@ -59,6 +59,17 @@ class PicturesAdapter(context: Context, quality: String, pictureUrlBuilder: Pict
         }
 
         fun bind(pictureMetadata: PictureMetadata) {
+            if (mPictureImageView.width == 0 || mPictureImageView.height == 0) {
+                mPictureImageView.post(Runnable {
+                    mPictureImageView.layoutParams.height = mPictureImageView.width
+                    loadImage(pictureMetadata)
+                })
+            } else {
+                loadImage(pictureMetadata)
+            }
+        }
+
+        private fun loadImage(pictureMetadata: PictureMetadata) {
             Glide.with(itemView)
                     .load(mPictureUrlBuilder.buildUrl(mQuality, pictureMetadata))
                     .into(mPictureImageView)
