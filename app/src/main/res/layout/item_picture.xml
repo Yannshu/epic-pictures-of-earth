@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -8,15 +9,35 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/cardview_margin"
         android:layout_marginEnd="@dimen/cardview_margin"
+        android:layout_marginStart="@dimen/cardview_margin"
         app:cardElevation="@dimen/cardview_default_elevation">
 
-        <ImageView
-            android:id="@+id/picture_image_view"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitCenter" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/picture_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/picture_image_view"
+                android:layout_alignEnd="@id/picture_image_view"
+                android:layout_alignRight="@id/picture_image_view"
+                android:layout_margin="@dimen/date_margin"
+                android:drawableEnd="@drawable/ic_calendar_clock_white_18dp"
+                android:drawablePadding="@dimen/date_icon_padding"
+                android:drawableRight="@drawable/ic_calendar_clock_white_18dp"
+                tools:text="2017-07-09" />
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
