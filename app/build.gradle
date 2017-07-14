@@ -40,6 +40,7 @@ ext {
     OKHTTP_VERSION = '3.8.1'
     BUTTERKNIFE_VERSION = '8.6.0'
     GLIDE_VERSION = '4.0.0-RC1'
+    PHOTO_VIEW_VERSION = '2.1.2'
 }
 
 dependencies {
@@ -83,4 +84,6 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$GLIDE_VERSION"
     kapt "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
+
+    implementation "com.github.chrisbanes:PhotoView:$PHOTO_VIEW_VERSION"
 }
