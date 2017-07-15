@@ -39,6 +39,7 @@ class HomeActivity : BaseActivity() {
         setContentView(R.layout.activity_home)
         ButterKnife.bind(this)
         initRecyclerView()
+        initActionBar(false)
 
         mViewModel.init(mQuality, "2017-06-20")
         mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {

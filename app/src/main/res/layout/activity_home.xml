@@ -5,9 +5,17 @@
     android:layout_height="match_parent"
     tools:context="com.yannshu.epicpicturesofearth.view.activities.HomeActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="@dimen/toolbar_elevation" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pictures_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" />
 
 </RelativeLayout>

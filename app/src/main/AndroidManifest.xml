@@ -21,7 +21,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activities.PictureActivity" />
+        <activity
+            android:name=".view.activities.PictureActivity"
+            android:parentActivityName=".view.activities.HomeActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.activities.HomeActivity" />
+
+        </activity>
 
     </application>
 

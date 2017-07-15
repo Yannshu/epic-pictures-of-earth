@@ -44,8 +44,9 @@ class PictureActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_photo)
+        setContentView(R.layout.activity_picture)
         ButterKnife.bind(this)
+        initActionBar(true)
 
         val pictureMetadataImage = mPictureMetadataImage
         if (pictureMetadataImage != null) {
