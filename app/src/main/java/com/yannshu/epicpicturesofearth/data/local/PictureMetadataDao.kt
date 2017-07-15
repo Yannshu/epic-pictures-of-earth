@@ -14,5 +14,8 @@ interface PictureMetadataDao {
     fun save(pictureMetadata: PictureMetadata)
 
     @Query("SELECT * FROM PictureMetadata WHERE date LIKE :date ORDER BY date ASC")
-    fun load(date: String): LiveData<List<PictureMetadata>>
+    fun loadByDate(date: String): LiveData<List<PictureMetadata>>
+
+    @Query("SELECT * FROM PictureMetadata WHERE image = :image")
+    fun loadByImage(image: String): LiveData<PictureMetadata>
 }

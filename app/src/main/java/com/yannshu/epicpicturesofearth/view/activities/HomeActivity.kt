@@ -11,14 +11,14 @@ import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
 import com.yannshu.epicpicturesofearth.view.adapters.PicturesAdapter
 import com.yannshu.epicpicturesofearth.view.base.BaseActivity
-import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataViewModel
+import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataListViewModel
 import javax.inject.Inject
 
 
 class HomeActivity : BaseActivity() {
 
     @Inject
-    lateinit var mViewModel: PicturesMetadataViewModel
+    lateinit var mViewModel: PicturesMetadataListViewModel
 
     @Inject
     lateinit var mAdapter: PicturesAdapter
@@ -65,5 +65,11 @@ class HomeActivity : BaseActivity() {
         mRecyclerView.addItemDecoration(mItemDecoration)
         mRecyclerView.layoutManager = mLayoutManager
         mRecyclerView.adapter = mAdapter
+        mAdapter.mListener = object : PicturesAdapter.Listener {
+            override fun onPictureClick(pictureMetadata: PictureMetadata) {
+                val intent = PictureActivity.createStartingIntent(baseContext, pictureMetadata)
+                baseContext.startActivity(intent)
+            }
+        }
     }
 }

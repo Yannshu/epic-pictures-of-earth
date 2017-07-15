@@ -16,7 +16,7 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
         super.onCreate(savedInstanceState)
     }
 
-    protected fun retrieveIntentBundle(extras: Bundle?) {
+    protected open fun retrieveIntentBundle(extras: Bundle?) {
     }
 
     private fun setUpActivityComponents() {

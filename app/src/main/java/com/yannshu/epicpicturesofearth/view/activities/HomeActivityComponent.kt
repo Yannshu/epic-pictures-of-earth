@@ -12,7 +12,7 @@ import com.yannshu.epicpicturesofearth.di.activity.ActivityScope
 import com.yannshu.epicpicturesofearth.utils.PictureUrlBuilder
 import com.yannshu.epicpicturesofearth.view.adapters.PicturesAdapter
 import com.yannshu.epicpicturesofearth.view.custom.SpacingItemDecoration
-import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataViewModel
+import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -31,8 +31,8 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
 
         @ActivityScope
         @Provides
-        fun providePicturesMetadataViewModel(repository: PicturesMetadataRepository): PicturesMetadataViewModel {
-            return PicturesMetadataViewModel(repository)
+        fun providePicturesMetadataViewModel(repository: PicturesMetadataRepository): PicturesMetadataListViewModel {
+            return PicturesMetadataListViewModel(repository)
         }
 
         @Provides
