@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context="com.yannshu.epicpicturesofearth.view.activities.HomeActivity">
 
     <android.support.v7.widget.Toolbar
@@ -12,8 +13,8 @@
         android:background="?attr/colorPrimary"
         android:elevation="@dimen/toolbar_elevation" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/pictures_recycler_view"
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photo_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar" />

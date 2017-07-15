@@ -6,7 +6,7 @@ import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.data.repositories.PicturesMetadataRepository
 
 
-class PicturesMetadataViewModel(repository: PicturesMetadataRepository): ViewModel() {
+class PicturesMetadataListViewModel(repository: PicturesMetadataRepository): ViewModel() {
 
     var mRepository: PicturesMetadataRepository = repository
 

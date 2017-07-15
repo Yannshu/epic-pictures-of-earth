@@ -17,7 +17,11 @@ class PicturesMetadataRepository(picturesMetadataApi: PictureMetadataApi, pictur
 
     fun getPicturesMetadata(quality: String, date: String): LiveData<List<PictureMetadata>> {
         refreshPicturesMetadata(quality, date)
-        return mPicturesMetadataDao.load(date + "%")
+        return mPicturesMetadataDao.loadByDate(date + "%")
+    }
+
+    fun getPictureMetadata(image: String): LiveData<PictureMetadata> {
+        return mPicturesMetadataDao.loadByImage(image)
     }
 
     private fun refreshPicturesMetadata(quality: String, date: String) {

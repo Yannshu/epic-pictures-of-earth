@@ -15,11 +15,17 @@ import com.yannshu.epicpicturesofearth.data.model.PictureMetadata
 import com.yannshu.epicpicturesofearth.utils.PictureUrlBuilder
 
 
-class PicturesAdapter(context: Context, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.Adapter<PicturesAdapter.ViewHolder>() {
+class PicturesAdapter(context: Context, pictureUrlBuilder: PictureUrlBuilder) : RecyclerView.Adapter<PicturesAdapter.ViewHolder>() {
+
+    interface Listener {
+        fun onPictureClick(pictureMetadata: PictureMetadata)
+    }
 
     val mContext: Context = context
 
     val mPicturesUrlBuilder: PictureUrlBuilder = pictureUrlBuilder
+
+    var mListener: Listener? = null
 
     var mData: List<PictureMetadata>? = null
 
@@ -41,10 +47,10 @@ class PicturesAdapter(context: Context, pictureUrlBuilder: PictureUrlBuilder): R
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_picture, parent, false)
-        return ViewHolder(view, mPicturesUrlBuilder)
+        return ViewHolder(view, mPicturesUrlBuilder, mListener)
     }
 
-    class ViewHolder(itemView: View, pictureUrlBuilder: PictureUrlBuilder): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, pictureUrlBuilder: PictureUrlBuilder, listener: Listener?) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.picture_image_view)
         lateinit var mPictureImageView: ImageView
@@ -54,11 +60,17 @@ class PicturesAdapter(context: Context, pictureUrlBuilder: PictureUrlBuilder): R
 
         val mPictureUrlBuilder: PictureUrlBuilder = pictureUrlBuilder
 
+        val mListener: Listener? = listener
+
         init {
             ButterKnife.bind(this, itemView)
         }
 
         fun bind(pictureMetadata: PictureMetadata) {
+            if (mListener != null) {
+                itemView.setOnClickListener(View.OnClickListener { mListener.onPictureClick(pictureMetadata) })
+            }
+
             if (mPictureImageView.width == 0 || mPictureImageView.height == 0) {
                 mPictureImageView.post(Runnable {
                     mPictureImageView.layoutParams.height = mPictureImageView.width

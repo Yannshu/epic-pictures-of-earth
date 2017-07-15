@@ -4,6 +4,9 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import butterknife.ButterKnife
+import com.yannshu.epicpicturesofearth.R
 import com.yannshu.epicpicturesofearth.di.activity.HasActivitySubComponentBuilders
 
 abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
@@ -16,7 +19,7 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
         super.onCreate(savedInstanceState)
     }
 
-    protected fun retrieveIntentBundle(extras: Bundle?) {
+    protected open fun retrieveIntentBundle(extras: Bundle?) {
     }
 
     private fun setUpActivityComponents() {
@@ -27,5 +30,11 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
     override fun getLifecycle(): LifecycleRegistry {
         return mLifecycleRegistry
+    }
+
+    protected fun initActionBar(displayHomeAsUpEnabled: Boolean) {
+        val toolBar = ButterKnife.findById<Toolbar>(this, R.id.toolbar)
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled)
     }
 }
