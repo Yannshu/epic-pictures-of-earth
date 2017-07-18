@@ -67,7 +67,7 @@
                         android:layout_centerVertical="true" />
 
                     <TextView
-                        android:id="@+id/title"
+                        android:id="@+id/title_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_above="@id/centerInParent"
@@ -77,7 +77,7 @@
                         android:textColor="@android:color/white" />
 
                     <TextView
-                        android:id="@+id/date_picker_text_view"
+                        android:id="@+id/subtitle_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/centerInParent"
@@ -90,8 +90,8 @@
                         android:id="@+id/date_picker_arrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/date_picker_text_view"
-                        android:layout_toRightOf="@id/date_picker_text_view"
+                        android:layout_alignBottom="@id/subtitle_text_view"
+                        android:layout_toRightOf="@id/subtitle_text_view"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </RelativeLayout>

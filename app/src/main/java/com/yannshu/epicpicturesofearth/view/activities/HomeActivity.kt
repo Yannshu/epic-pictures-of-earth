@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.yannshu.epicpicturesofearth.R
@@ -32,16 +33,23 @@ class HomeActivity : BaseActivity() {
     @BindView(R.id.pictures_recycler_view)
     lateinit var mRecyclerView: RecyclerView
 
+    @BindView(R.id.title_text_view)
+    lateinit var mTitleTextView: TextView
+
+    @BindView(R.id.subtitle_text_view)
+    lateinit var mSubtitleTextView: TextView
+
     var mQuality: String = "natural"
+
+    var mDate: String = "2017-06-20"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         ButterKnife.bind(this)
-        initRecyclerView()
-        initActionBar(false)
+        initLayout()
 
-        mViewModel.init(mQuality, "2017-06-20")
+        mViewModel.init(mQuality, mDate)
         mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
             override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
                 Log.d("data", "pictures: " + picturesMetadata?.size)
@@ -61,6 +69,13 @@ class HomeActivity : BaseActivity() {
                 .injectMembers(this)
     }
 
+    private fun initLayout() {
+        initRecyclerView()
+        initActionBar(false)
+        setTitle(getString(R.string.app_name))
+        setSubtitle(mDate)
+    }
+
     private fun initRecyclerView() {
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.addItemDecoration(mItemDecoration)
@@ -72,5 +87,13 @@ class HomeActivity : BaseActivity() {
                 baseContext.startActivity(intent)
             }
         }
+    }
+
+    private fun setTitle(title: String) {
+        mTitleTextView.text = title
+    }
+
+    private fun setSubtitle(subtitle: String) {
+        mSubtitleTextView.text = subtitle
     }
 }
