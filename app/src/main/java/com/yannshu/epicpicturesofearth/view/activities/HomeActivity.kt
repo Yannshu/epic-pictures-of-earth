@@ -69,16 +69,6 @@ class HomeActivity : BaseActivity() {
         ButterKnife.bind(this)
         initLayout()
         setCurrentDate(Date())
-
-        mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
-            override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
-                Log.d("data", "pictures: " + picturesMetadata?.size)
-                if (picturesMetadata != null) {
-                    mAdapter.mData = picturesMetadata
-                    mAdapter.notifyDataSetChanged()
-                }
-            }
-        })
     }
 
     override fun injectMembers(hasActivitySubComponentBuilders: HasActivitySubComponentBuilders) {
@@ -135,8 +125,25 @@ class HomeActivity : BaseActivity() {
         if (formattedDate != null) {
             setSubtitle(formattedDate)
             mCalendarView.setCurrentDate(date)
-            mViewModel.init(mQuality, formattedDate)
+            initViewModel(formattedDate)
         }
+    }
+
+    private fun initViewModel(date: String) {
+        if (mViewModel.mPicturesMetadata != null) {
+            mViewModel.mPicturesMetadata?.removeObservers(this)
+            mViewModel.mPicturesMetadata = null
+        }
+        mViewModel.getPictures(mQuality, date)
+        mViewModel.mPicturesMetadata?.observe(this, object : Observer<List<PictureMetadata>> {
+            override fun onChanged(picturesMetadata: List<PictureMetadata>?) {
+                Log.d("data", "pictures: " + picturesMetadata?.size)
+                if (picturesMetadata != null) {
+                    mAdapter.mData = picturesMetadata
+                    mAdapter.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
     @OnClick(R.id.date_picker_layout)
