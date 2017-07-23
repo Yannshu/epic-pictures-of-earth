@@ -105,6 +105,7 @@ class HomeActivity : BaseActivity() {
         mCalendarView.setListener(object : CompactCalendarView.CompactCalendarViewListener {
             override fun onDayClick(dateClicked: Date) {
                 setCurrentDate(dateClicked)
+                expandCalendar(false)
             }
 
             override fun onMonthScroll(firstDayOfNewMonth: Date) {
@@ -148,12 +149,16 @@ class HomeActivity : BaseActivity() {
 
     @OnClick(R.id.date_picker_layout)
     fun onDatePickerClick(view: View) {
+        expandCalendar(!mIsExpanded)
+    }
+
+    private fun expandCalendar(expand: Boolean) {
         if (mIsExpanded) {
             ViewCompat.animate(mArrowImageView).rotation(0.0f).start();
         } else {
             ViewCompat.animate(mArrowImageView).rotation(180.0f).start();
         }
-        mIsExpanded = !mIsExpanded
+        mIsExpanded = expand
         mAppBarLayout.setExpanded(mIsExpanded, true)
     }
 }
