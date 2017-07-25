@@ -13,7 +13,7 @@ class PicturesMetadataListViewModel(repository: PicturesMetadataRepository): Vie
     var mDate: String? = null
     var mPicturesMetadata: LiveData<List<PictureMetadata>>? = null
 
-    fun init(quality: String, date: String) {
+    fun getPictures(quality: String, date: String) {
         mDate = date
         if (mDate != null) {
             mPicturesMetadata = mRepository.getPicturesMetadata(quality, date)

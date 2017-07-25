@@ -16,6 +16,8 @@ import com.yannshu.epicpicturesofearth.view.model.PicturesMetadataListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
+import java.text.SimpleDateFormat
+import java.util.*
 
 @ActivityScope
 @Subcomponent(modules = arrayOf(HomeActivityComponent.HomeActivityModule::class))
@@ -51,5 +53,11 @@ interface HomeActivityComponent : ActivityComponent<HomeActivity> {
         fun providePicturesAdapter(picturesUrlBuilder: PictureUrlBuilder): PicturesAdapter {
             return PicturesAdapter(mContext, picturesUrlBuilder)
         }
+
+        @Provides
+        fun provideDateFormat(): SimpleDateFormat {
+            return SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        }
+
     }
 }
