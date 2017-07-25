@@ -3,7 +3,6 @@ package com.yannshu.epicpicturesofearth.view.activities
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -111,6 +110,17 @@ class HomeActivity : BaseActivity() {
             override fun onMonthScroll(firstDayOfNewMonth: Date) {
             }
         })
+
+        mAppBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+                val totalScrollRange: Int? = appBarLayout?.getTotalScrollRange()
+
+                if (totalScrollRange != null) {
+                    val angle: Float = (verticalOffset.toFloat() / totalScrollRange.toFloat()) * 180.0f
+                    mArrowImageView.rotation = angle
+                }
+            }
+        })
     }
 
     private fun setTitle(title: String) {
@@ -153,11 +163,6 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun expandCalendar(expand: Boolean) {
-        if (mIsExpanded) {
-            ViewCompat.animate(mArrowImageView).rotation(0.0f).start();
-        } else {
-            ViewCompat.animate(mArrowImageView).rotation(180.0f).start();
-        }
         mIsExpanded = expand
         mAppBarLayout.setExpanded(mIsExpanded, true)
     }
